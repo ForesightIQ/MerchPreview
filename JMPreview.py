@@ -20,10 +20,12 @@ def main():
     filtered_df = filter_by_category(selected_category)
 
     for index, row in filtered_df.iterrows():
+        formatted_Price = '₹ {:,}'.format(row['Prod_Price'])
+        formated_MRP = '₹ {:,}'.format(row['MRP'])
         st.write(f"#### {row['Prod_Name']}")
         st.image(row['Prod_Image'], use_column_width=200)
-        st.write(f"##### Price: Rs.{row['Prod_Price']}")
-        st.write(f"Price: <span style='text-decoration: line-through;'>Rs.{row['MRP']}</span>", unsafe_allow_html=True)
+        st.write(f"##### Price: {formatted_Price} <span style='background-color: black; color: white; padding: 5px;'>{row['Discount']}% OFF</span>", unsafe_allow_html=True)
+        st.write(f"Price: <span style='text-decoration: line-through;font-size: 18px;'> {formated_MRP}</span>", unsafe_allow_html=True)
 
 
 if __name__ == '__main__':
